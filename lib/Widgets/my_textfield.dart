@@ -12,6 +12,7 @@ class CustomField extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
+    //creamos un textfield que nos permita ingresar el monto a convertir
     return TextFormField(
       controller: controller,
       keyboardType: TextInputType.number,

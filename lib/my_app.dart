@@ -18,7 +18,6 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.greenAccent[400],
         ),
         body: const Padding(
-
           padding:  EdgeInsets.all(40.0),
           child:  HomePage(),
         ),

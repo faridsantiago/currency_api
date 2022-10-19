@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 class Mydropdown extends StatelessWidget {
   const Mydropdown({Key? key, required this.items, required this.onChanged, required this.value}) : super(key: key);
   final List<String> items;
-  final void Function(String?) onChanged;
+  final void Function(String?) onChanged; //utilizams el onchanged para que se actualice el valor de la moneda
   final String value;
   
 
   @override
   Widget build(BuildContext context) {
-    return DropdownButtonFormField(
+    //creamos un dropdownbutton que nos permita elegir la moneda de origen y destino
+    return DropdownButtonFormField( 
       value: value,
       decoration: InputDecoration(
         border: OutlineInputBorder(

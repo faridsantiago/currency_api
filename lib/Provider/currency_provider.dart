@@ -21,23 +21,26 @@ class CurrencyProvider{
       throw Exception('Failed to load data');
     }
   }
+  //con este endpoint obtenemos los nombres de los paises y tambien trae las respectivas conversiones
   Future<Modelcurrency> getConvertCurrencies(double amount, String currency1, String currency2) async {
     final String url2 = "https://api.frankfurter.app/latest?amount=$amount&from=$currency1&to=$currency2";
     final response = await http.get(Uri.parse(url2));
-    String body = utf8.decode(response.bodyBytes);
+    String body = utf8.decode(response.bodyBytes); //convertimos el body a utf8
     final decodedData = json.decode(body);
-    print(decodedData);
-    final currencies = Modelcurrency.fromJsonMap(decodedData);
+    //print(decodedData);
+    final currencies = Modelcurrency.fromJsonMap(decodedData); //creamos una variable currencies para almacenar los datos del json
     return currencies;
   }
+
+//con este endpoint obtenemos los nombres de los paises
   Future<CountriesCurrency> getCountries() async{
     
     final String url3 = "https://api.frankfurter.app/currencies";
     final response = await http.get(Uri.parse(url3));
-    String body = utf8.decode(response.bodyBytes);
-    final decodedData = json.decode(body);
+    String body = utf8.decode(response.bodyBytes); //convertimos el body a utf8
+    final decodedData = json.decode(body); //decodificamos el body
     //print("Llegue aqui a getCountries");
-    final countries = CountriesCurrency.fromJsonMap(decodedData);
+    final countries = CountriesCurrency.fromJsonMap(decodedData); //creamos una variable countries para almacenar los datos del json
     return countries;
 
   }

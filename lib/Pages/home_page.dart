@@ -15,16 +15,19 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final TextEditingController _controllerAmount = TextEditingController();
 
+  //inicializamos las variables que utilizaremos
   String _currencyFrom = 'USD';
   String _currencyTo = 'EUR';
 
   double _amount = 1;
   double _result = 0.0;
 
+  //llamamos al endpoint de la api el cual nos trae los nombres de las monedas
   final CurrencyProvider _currencyProvider = CurrencyProvider();
-
+  
   late Future<CountriesCurrency> _countries;
 
+  //initializamos el estado de la aplicacion
   @override
   void initState() {
     super.initState();
@@ -41,6 +44,8 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            //creammos un futurebuilder que nos traera el nombre completo de la moneda 
+
             FutureBuilder<CountriesCurrency>(
               future: _countries,
               builder: (context, snapshot) {
@@ -64,6 +69,7 @@ class _HomePageState extends State<HomePage> {
             ),
             const SizedBox(height: 10),
             Row(
+              //aqui asignamos en el textfield los valores de la cantidad de dinero que queremos convertir y el rates que nos da el endpoint
               children: [
                 Expanded(
                   child: CustomField(
@@ -117,13 +123,14 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  //creamos esta funcuion para que al momento de no tener ningun valor siga teniendo el valor de 1 para no generar errores
   handleChange(String value) async {
     if (value.isEmpty) {
         _amount = 1;
     } else {
       _amount = double.parse(value);
     }
-
+ 
     final rates = await _currencyProvider.getConvertCurrencies(
         _amount, _currencyFrom, _currencyTo);
 
