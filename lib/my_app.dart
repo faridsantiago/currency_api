@@ -11,12 +11,17 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Currency Converter',
       home: Scaffold(
+        backgroundColor: Color.fromARGB(255, 14, 93, 241),
         appBar: AppBar(
           title: const Text('Currency Converter'),
           centerTitle: true,
           backgroundColor: Colors.greenAccent[400],
         ),
-        body: const HomePage(),
+        body: const Padding(
+
+          padding:  EdgeInsets.all(40.0),
+          child:  HomePage(),
+        ),
       ),
     );
   }
